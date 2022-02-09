@@ -1,4 +1,6 @@
 require 'sinatra'
+require 'json'
+require_relative 'movies'
 
 $users = {"annika" => "password", "lucas" => "secret"}
 
@@ -8,6 +10,16 @@ def getUser()
         error 401
     end
     return $tokens[token]
+end
+
+def tally(array)  
+    i = 0  
+    count = Hash.new(0)
+    while i < array.length 
+        count[array[i]] += 1 
+        i += 1
+    end
+    return count
 end
 
 post "/register" do
@@ -31,24 +43,20 @@ post "/login" do
     end
 end
 
-movies = {1 => "Harry Potter och fången från Azkaban", 2 => "Spiderman no way home", 3 => "Shrek 3"}
-
 get "/movie" do
     token = params[:token]
     if !$tokens.key?(token)
         error 401
     end
-    return movies[rand(1..movies.length)]
+    return $movies[rand(1..$movies.length)]
 end
 
 get "/movie/:id" do
-    return movies[params[:id].to_i]
+    return $movies[params[:id].to_i].to_h.to_json
 end
 
-rating = {1 => "4.5/5", 2 => "4/5", 3 => "5/5"}
-
 get "/movie/:id/rating" do
-    return rating[params[:id].to_i]
+    return $movies[params[:id].to_i].rating
 end
 
 get "/me" do
@@ -68,7 +76,7 @@ end
 $partys = {}
 Party = Struct.new(:users, :movies, :liked)
 
-put "/party/join/:code" do
+put "/party/:code/join" do
     user = getUser()
     $partys[params[:code]].users.append(user)
     p $partys
@@ -76,7 +84,22 @@ put "/party/join/:code" do
 end
 
 get "/party/:code/movies" do
-    return $partys[params[:code]].movies.join()
+    return $partys[params[:code]].movies.join(",")
+end
+
+put "/party/:code/like/:id" do
+    code = params[:code]
+    party = $partys[code]
+    id = params[:id].to_i
+    party.liked.push(id)
+    count = tally(party.liked)
+
+    count.each do |key, value|
+        if value >= 2
+            return "It's a match: #{key}"
+        end
+    end
+    return "No match"
 end
 
 $tokens = {}
