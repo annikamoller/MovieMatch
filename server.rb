@@ -78,7 +78,16 @@ Party = Struct.new(:users, :movies, :liked)
 
 put "/party/:code/join" do
     user = getUser()
-    $partys[params[:code]].users.append(user)
+    i = 0
+    users = $partys[params[:code]].users
+    while i <users.length
+        if users[i] == user
+            error 422
+        end
+        i += 1
+    end
+    
+    users.append(user)
     p $partys
     return "success"
 end
