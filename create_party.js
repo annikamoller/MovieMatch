@@ -1,0 +1,1 @@
+getUser().then( code => $("#code").text(code))

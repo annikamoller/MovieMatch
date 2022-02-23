@@ -1,1 +1,1 @@
-getUser().then(username => $("#username").text(username))
+getUser().then( username => $("#username").text(username))

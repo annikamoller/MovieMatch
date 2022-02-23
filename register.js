@@ -7,7 +7,6 @@ function register_click() {
     let username = $("#username").val()
     console.log(username)
     let password = $("#password").val()
-    console.log(password)
     if(validate_password(password)){
         alert("Ditt lösenord är tillräckligt starkt!")
     }
@@ -18,7 +17,7 @@ function register_click() {
     registerUser(username, password).then(data => {
         alert("Welcome " + data.username);
     }).catch(err => {
-        alert("Failed: " + err.data);
+        alert("Failed: " + err);
     })
 }
 

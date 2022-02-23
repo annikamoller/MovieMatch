@@ -1,0 +1,30 @@
+.index_container {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-direction: column;
+}
+
+.index_buttons {
+    width: 60vw;
+    font-size: 2.5rem;
+    background-color: yellow;
+}
+
+.start_btn {
+    width: 60vw;
+    font-size: 2.5rem;
+    background-color: green;
+}
+
+.join_btn {
+    width: 60vw;
+    font-size: 2.5rem;
+    background-color: green;  
+}
+
+p {
+    font-size: 1.5rem;
+}
+
