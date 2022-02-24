@@ -1,11 +1,12 @@
 require "sinatra"
+require "sinatra/json"
 require "json"
 require_relative "movies"
 require_relative "lib/auth"
 
 def getUser()
   user = authorize!()
-  return user.name
+  return user.username
 end
 
 def tally(array)
@@ -19,6 +20,7 @@ def tally(array)
 end
 
 before do
+  response["Access-Control-Allow-Origin"] = "http://localhost:5500"
   # request.body.rewind
   # @request_payload = JSON.parse request.body.read
 end
@@ -78,27 +80,43 @@ get "/party/create" do
   movies = [1, 2, 3]
   liked = []
 
-  new_party = Party.new(users, movies, liked)
+  new_party = Party.new(code, users, movies, liked)
   $partys[code] = new_party
-  return code
+  return new_party.to_h.to_json
 end
-$partys = {}
-Party = Struct.new(:users, :movies, :liked)
 
-put "/party/:code/join" do
-    user = getUser()
-    i = 0
-    users = $partys[params[:code]].users
-    while i <users.length
-        if users[i] == user
-            error 422
-        end
-        i += 1
+$partys = {}
+Party = Struct.new(:code, :users, :movies, :liked)
+
+options "/**" do
+  response.headers["Access-Control-Allow-Origin"] = "*"
+  response.headers["Access-Control-Allow-Methods"] = "PUT"
+
+  halt 200
+end
+
+#TODO try to make this a put requeest
+get "/party/:code/join" do
+  response["Access-Control-Allow-Origin"] = "http://localhost:5500"
+  response.headers["Access-Control-Allow-Methods"] = "PUT"
+
+  user = getUser()
+  i = 0
+  users = $partys[params[:code]].users
+  while i < users.length
+    if users[i] == user
+      error 422
     end
-    
-    users.append(user)
-    p $partys
-    return "success"
+    i += 1
+  end
+
+  users.append(user)
+  p $partys
+  return $partys[params[:code]].to_h.to_json
+end
+
+get "/party/:code" do
+  return $partys[params[:code]].to_h.to_json
 end
 
 get "/party/:code/movies" do
