@@ -4,27 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Create party</title>
-    <link rel ="stylesheet" href="style.css">
+    <title>Login</title>
     <script
   src="https://code.jquery.com/jquery-3.6.0.min.js"
   integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
   crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script src="lib/api.js"></script>
+    <script src="./js/api.js"></script>
 </head>
 <body>
-    <p>This is your code:</p>
-    <span id="code"></span>
-    <p>Share it with your friends!</p>
-    <h2>Party members</h2>
-    <ol>
-        <li>Lisa</li>
-        <li>Maja</li>
-        <li>Fredrik</li>
-    </ol>
-
-    <a href="#"><div class="start_btn">START</div></a>
-    <script src = "create_party.js"></script>
+    <label for="username">Username:</label>
+    <input type="text" id="username"/>
+    <br>
+    <label for="password">Password:</label>
+    <input type="password" id="password"/>
+    <br>
+    <button id="register_btn">Register</button>
+    <script src="./js/register.js"></script>
 </body>
 </html>
