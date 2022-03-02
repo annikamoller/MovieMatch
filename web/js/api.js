@@ -23,6 +23,11 @@ function login(user, pass){
     })  
 }
 
+function logout(){
+    localStorage.clear();
+    location.href = "./login.html"
+}
+
 function getRequest(endpoint){
     return new Promise((resolve, reject) => {
         axios.get(server + endpoint, {headers: {
@@ -43,6 +48,11 @@ function getUser(){
     return getRequest("/me")
 }
 
+/**
+ * Create Party
+ *
+ * @returns {Promise<Party>} Party
+ */
 function createParty(){
     return new Promise((resolve, reject) => {
         getRequest("/party/create").then((party)=>{
@@ -52,15 +62,80 @@ function createParty(){
     })
 }
 
+/**
+ * @typedef Party
+ * @property {string} code
+ * @property {Array.<string>} users - member usernames
+ * @property {array} movies
+ */
+
+/**
+ * Join Party
+ *
+ * @param {string} code - Party Code
+ * @returns {Promise<Party>} Party
+ */
 function joinParty(code){
     return new Promise((resolve, reject) => {
         getRequest(`/party/${code}/join`).then((party)=>{
            localStorage.setItem("code", code);
            resolve(party)
+        }).catch(err => reject(err))
+    })
+}
+
+/**
+ * Get current party
+ *
+ * @returns {Promise<Party>} Party
+ */
+function getParty(){
+    return getRequest(`/party/${localStorage.getItem("code")}`)
+}
+
+/**
+ * @typedef Movie
+ * @property {number} id
+ * @property {string} title - Movie title
+ * @property {string} rating
+ */
+
+/**
+ * Get movie by id
+ *
+ * @param {number} id - Movie id
+ * @returns {Promise<Movie>} Movie
+ */
+function getMovie(id){
+    return getRequest(`/movie/${id}`)
+}
+
+/**
+ * Get next movie
+ *
+ * @param {number} id - Movie id
+ * @returns {Promise<Movie>} Movie
+ */
+function nextMovie(){
+    let index = localStorage.getItem("index");
+    if (index == null) {
+        index = -1;
+    }
+    index++;
+    localStorage.setItem("index", index);
+    return new Promise((resolve, reject) => {
+        getParty().then(party => {
+            resolve(getMovie(party.movies[index]))
         })
     })
 }
 
-function getParty(){
-    getRequest(`/party/${localStorage.getItem("code")}/join`)
+/**
+ * Like movie in current party by id
+ *
+ * @param {number} id - Movie id
+ * @returns {Promise<string>} It's a match | no match
+ */
+function likeMovie(id){
+    return getRequest(`/party/${localStorage.getItem("code")}/like/${id}`)
 }

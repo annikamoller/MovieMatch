@@ -6,7 +6,7 @@ function login_click() {
 
     login(username, password)
         .then(data => {
-            location.href = "/index.html"
+            location.href = "./index.html"
         }).catch(err => {
             console.log(err.response)
             alert("Failed: " + err.response.data);

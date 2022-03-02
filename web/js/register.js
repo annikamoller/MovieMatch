@@ -16,6 +16,7 @@ function register_click() {
 
     registerUser(username, password).then(data => {
         alert("Welcome " + data.username);
+        location.href = "./login.html"
     }).catch(err => {
         alert("Failed: " + err);
     })

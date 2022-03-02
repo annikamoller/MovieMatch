@@ -6,7 +6,7 @@ require_relative "responses"
 
 $hmac_secret = "secret"
 
-$users = { 0 => User.new(0, "Lucas", "hemligt"), 1 => User.new(1, "annika", "password") }
+$users = { 0 => User.new(0, "lucas", "secret"), 1 => User.new(1, "annika", "password") }
 
 before "/*" do
   response["Access-Control-Allow-Origin"] = "http://localhost:5500"

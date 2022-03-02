@@ -123,7 +123,7 @@ get "/party/:code/movies" do
   return $partys[params[:code]].movies.join(",")
 end
 
-put "/party/:code/like/:id" do
+get "/party/:code/like/:id" do
   code = params[:code]
   party = $partys[code]
   id = params[:id].to_i
