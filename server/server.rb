@@ -80,13 +80,13 @@ get "/party/create" do
   movies = [1, 2, 3]
   liked = []
 
-  new_party = Party.new(code, users, movies, liked)
+  new_party = Party.new(code, users, movies, liked, false)
   $partys[code] = new_party
   return new_party.to_h.to_json
 end
 
 $partys = {}
-Party = Struct.new(:code, :users, :movies, :liked)
+Party = Struct.new(:code, :users, :movies, :liked, :active)
 
 options "/**" do
   response.headers["Access-Control-Allow-Origin"] = "*"
@@ -130,12 +130,19 @@ get "/party/:code/like/:id" do
   party.liked.push(id)
   count = tally(party.liked)
 
-  count.each do |key, value|
+  count.each do |key, value| 
     if value >= 2
       return "It's a match: #{key}"
     end
   end
   return "No match"
+end
+
+get "/party/:code/activate" do
+  code = params[:code]
+  party = $partys[code]
+  party.active = true
+  success_response()
 end
 
 $tokens = {}

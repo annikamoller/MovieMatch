@@ -6,11 +6,20 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <link rel ="stylesheet" href="style.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="./js/api.js"></script>
 </head>
 <body>
-    <img src="spider.jpg"></img>
-    <h1>Spiderman no way home</h1>
-    <p>rating</p>
-    <p>Description</p>
+    <img src="spider.jpg" id="movieimg"></img>
+    <h1 id="title">Spiderman no way home</h1>
+    <p id="rating">rating</p>
+    <p id="description">Description</p>
+
+    <div id="likeBtn">&lt;3</div>
+    <div id="dissBtn">X</div>
+
+    <script src="./js/swipe.js"></script>
 </body>
 </html>

@@ -54,6 +54,7 @@ function getUser(){
  * @returns {Promise<Party>} Party
  */
 function createParty(){
+    localStorage.setItem("index", 0);
     return new Promise((resolve, reject) => {
         getRequest("/party/create").then((party)=>{
            localStorage.setItem("code", party.code);
@@ -76,6 +77,7 @@ function createParty(){
  * @returns {Promise<Party>} Party
  */
 function joinParty(code){
+    localStorage.setItem("index", 0);
     return new Promise((resolve, reject) => {
         getRequest(`/party/${code}/join`).then((party)=>{
            localStorage.setItem("code", code);
@@ -138,4 +140,8 @@ function nextMovie(){
  */
 function likeMovie(id){
     return getRequest(`/party/${localStorage.getItem("code")}/like/${id}`)
+}
+
+function activateParty(){
+    return getRequest(`/party/${localStorage.getItem("code")}/activate`)
 }
