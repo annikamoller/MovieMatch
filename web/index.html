@@ -1,22 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Welcome</title>
-    <script
-  src="https://code.jquery.com/jquery-3.6.0.min.js"
-  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
-  crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script src="./js/api.js"></script>
-    <link rel ="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Welcome</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="./js/api.js"></script>
+  <link rel="stylesheet" href="style.css">
 </head>
+
 <body class="index_container">
-    <p>Welcome <span id="username"></span></p>
-    <a href="create_party.html"><div class="index_buttons">Create party</div></a>
-    <a href="join_party.html"> <div class="index_buttons">Join party</div></a>
-    <script src = "./js/main.js"></script>
+  <p>Welcome <span id="username"></span></p>
+  <a href="create_party.html">
+    <div class="index_buttons">Create party</div>
+  </a>
+  <a href="join_party.html">
+    <div class="index_buttons">Join party</div>
+  </a>
+  <script src="./js/main.js"></script>
+  <!--logout button-->
+  <button class="logout_btn" onclick="logout()" role="button"><span class="text">Logout</span></button>
 </body>
+
 </html>
