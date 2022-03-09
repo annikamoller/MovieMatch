@@ -13,3 +13,13 @@ $("#likeBtn").click(()=> {
     likeMovie(movieId).then(data => console.log(data))
     location.reload()
 })
+
+setInterval(()=>{
+    getParty().then((party)=>{
+        if(party.matches.length != localStorage.getItem("matches").length){
+           console.log("New match!")
+           localStorage.setItem("matches", party.matches) 
+        }
+    })
+
+}, 1000)

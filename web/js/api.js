@@ -154,3 +154,12 @@ function likeMovie(id){
 function activateParty(){
     return getRequest(`/party/${localStorage.getItem("code")}/activate`)
 }
+
+
+/**
+ * clears all data saved by party to be ready for new party
+ */
+function startParty(){
+    localStorage.removeItem("index")
+    localStorage.removeItem("matches")
+}

@@ -3,6 +3,7 @@ function updatePartylist(){
     getParty().then(party => {
         console.log(party.users)
         if(party.active == true){
+            startParty()
             location.href = "./swipe.html"
         }
         $('#partyMemberlist').empty()
