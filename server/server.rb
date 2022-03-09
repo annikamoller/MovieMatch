@@ -78,15 +78,16 @@ get "/party/create" do
   code = generate_rand_string(5)
   users = [getUser()]
   movies = [1, 2, 3]
-  liked = []
+  liked = Hash.new()
+  matches = []
 
-  new_party = Party.new(code, users, movies, liked, false)
+  new_party = Party.new(code, users, movies, liked, false, matches)
   $partys[code] = new_party
   return new_party.to_h.to_json
 end
 
 $partys = {}
-Party = Struct.new(:code, :users, :movies, :liked, :active)
+Party = Struct.new(:code, :users, :movies, :liked, :active, :matches)
 
 options "/**" do
   response.headers["Access-Control-Allow-Origin"] = "*"
@@ -123,19 +124,29 @@ get "/party/:code/movies" do
   return $partys[params[:code]].movies.join(",")
 end
 
-get "/party/:code/like/:id" do
+get "/party/:code/like/:movieid" do
+  puts "hmmmmm"
+  userid = authorize!().id
+  movieid = params[:movieid].to_i
   code = params[:code]
   party = $partys[code]
-  id = params[:id].to_i
-  party.liked.push(id)
-  count = tally(party.liked)
 
-  count.each do |key, value| 
-    if value >= 2
-      return "It's a match: #{key}"
-    end
+  puts "Hi i want to like #{movieid}, i am #{userid}"
+
+  if !party.liked.key?(movieid)
+    party.liked[movieid] = []
   end
-  return "No match"
+
+  party.liked[movieid].push(userid)
+
+  if party.liked[movieid].length == 2
+    party.matches.push(movieid)
+    puts "It's a match"
+  end
+
+  p party.liked[movieid]
+  
+  success_response()
 end
 
 get "/party/:code/activate" do

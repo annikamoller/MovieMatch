@@ -24,6 +24,23 @@
     background-color: green;  
 }
 
+#likeBtn, #dissBtn {
+  background-color: #00DDEB;
+  margin: 1rem;
+  font-size: 2rem;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 10%;
+  top: 20%;
+  width: 80%;
+  height: 60%;
+  background-color: #AF40FF;
+}
+
 p {
     font-size: 1.5rem;
 }

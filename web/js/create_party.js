@@ -15,6 +15,7 @@ setInterval(updatePartylist, 1000)
 function startClick() {
     console.log("start")
     activateParty()
+    localStorage.removeItem("index")
     location.href = "./swipe.html"
 }
 
