@@ -32,7 +32,16 @@ function getRequest(endpoint){
     return new Promise((resolve, reject) => {
         axios.get(server + endpoint, {headers: {
             'Authorization': `${localStorage.getItem('token')}` 
-          }}).then(data => resolve(data.data)).catch(err => reject(err.response))
+          }})
+          .then(data => resolve(data.data))
+          .catch(err => {
+              console.log(err.response.data)
+              if(err.response.data.err = "Unauthorized"){
+                  location.href = err.response.data.data
+              }else {
+                reject(err.response)
+              }
+            })
     })
 }
 
