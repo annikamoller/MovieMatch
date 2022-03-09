@@ -161,5 +161,5 @@ function activateParty(){
  */
 function startParty(){
     localStorage.removeItem("index")
-    localStorage.removeItem("matches")
+    localStorage.setItem("matches", [])
 }
