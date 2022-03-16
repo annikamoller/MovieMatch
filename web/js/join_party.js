@@ -16,6 +16,7 @@ function updatePartylist(){
 function join_click(){
     alert("Joined")
     const code = $("#code").val()
+    startParty()
     joinParty(code).then(party => {
         $("#partyInfo").removeClass("hidden")
         $("#joinForm").addClass("hidden")
