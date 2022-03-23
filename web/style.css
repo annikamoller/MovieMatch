@@ -1,3 +1,7 @@
+ * {
+  font-family: Phantomsans, sans-serif;
+ }
+ 
  .index_container {
     height: 100vh;
     display: flex;
@@ -6,7 +10,6 @@
     flex-direction: column;
     background-color: rgb(24, 24, 24);
     color: white;
-    font-family: Phantomsans, sans-serif;
 }
 
 .swipeContainer {
@@ -24,14 +27,18 @@
   justify-content: space-evenly;
   background-color: rgb(24, 24, 24);
   color: white;
-  font-family: Phantomsans, sans-serif;
 }
 
 .join_party_container {
   height: 100vh;
   background-color: rgb(24, 24, 24);
   color: white;
-  font-family: Phantomsans, sans-serif;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  background-color:  rgb(24, 24, 24);
 }
 
 .index_buttons {
@@ -39,7 +46,6 @@
     font-size: 2.3rem;
     border-radius: 0.6rem;
     color: white;
-    font-family: Phantomsans, sans-serif;
     text-align: center;
     background-image: linear-gradient(144deg,#AF40FF, #5B42F3 50%,#00DDEB);
     box-shadow: rgba(151, 65, 252, 0.2) 0 15px 30px -5px;
@@ -55,7 +61,6 @@
 .join_btn {
     width: 60vw;
     font-size: 2.5rem;
-    font-family: Phantomsans, sans-serif;
     text-align: center;
     background-image: linear-gradient(144deg,#AF40FF, #5B42F3 50%,#00DDEB);
     box-shadow: rgba(151, 65, 252, 0.2) 0 15px 30px -5px; 
@@ -102,6 +107,22 @@ img {
     display: none;
 }
 
+.settings_img {
+  height: 4rem;
+  width: 4rem;
+}
+
+.settings {
+  display: flex;
+  justify-content: flex-end;
+}
+
+#settings_done {
+  width: 30%;
+  background-image: linear-gradient(144deg,#AF40FF, #5B42F3 50%,#00DDEB);
+  box-shadow: rgba(151, 65, 252, 0.2) 0 15px 30px -5px; 
+}
+
 /*logout_btn css */
 .logout_btn {
   align-items: center;
@@ -112,7 +133,6 @@ img {
   box-sizing: border-box;
   color: #FFFFFF;
   display: flex;
-  font-family: Phantomsans, sans-serif;
   font-size: 20px;
   justify-content: center;
   line-height: 1em;

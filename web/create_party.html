@@ -13,7 +13,22 @@
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="./js/api.js"></script>
 </head>
-<body class="create_party_container">
+<body>
+
+  <div class = "settings">
+    <img src="icons8-settings.svg" class="settings_img" id="settings_img">
+  </div>
+
+  <div class="create_party_container">
+  <div id ="genres_container" class="hidden">
+    <h1>Genres:</h1>
+    <label><input type="checkbox" checked="checked" id="comedy">Comedy</label>
+    <label><input type="checkbox" checked="checked" id="horror">Horror</label>
+    <label><input type="checkbox" checked="checked" id="action">Action</label>
+    <label><input type="checkbox" checked="checked" id="romance">Romance</label>
+    <div id="settings_done">Done</div>
+  </div>
+
   <div>
     <p>This is your code:</p>
     <span id="code"></span>
@@ -23,7 +38,9 @@
     </ol>
   </div>
 
-    <div id="start_btn">START</div>
+  <div id="start_btn">START</div>
+</div>
+
     <script src = "./js/create_party.js"></script>
 </body>
 </html>

@@ -80,14 +80,15 @@ get "/party/create" do
   movies = [1, 2, 3]
   liked = Hash.new()
   matches = []
+  genres = []
 
-  new_party = Party.new(code, users, movies, liked, false, matches)
+  new_party = Party.new(code, users, movies, liked, false, matches, genres)
   $partys[code] = new_party
   return new_party.to_h.to_json
 end
 
 $partys = {}
-Party = Struct.new(:code, :users, :movies, :liked, :active, :matches)
+Party = Struct.new(:code, :users, :movies, :liked, :active, :matches, :genres)
 
 options "/**" do
   response.headers["Access-Control-Allow-Origin"] = "*"
@@ -154,6 +155,14 @@ get "/party/:code/activate" do
   party = $partys[code]
   party.active = true
   success_response()
+end
+
+#TODO get this to work
+get "/party/:code/genres/add/:genre" do
+  code = params[:code]
+  party = $partys[code]
+  party.genres.push(params[:genre])
+  puts party.genres
 end
 
 $tokens = {}

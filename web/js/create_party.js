@@ -2,7 +2,6 @@ createParty().then( party => $("#code").text(party.code))
 
 function updatePartylist(){
     getParty().then(party => {
-        console.log(party.users)
         $('#partyMemberlist').empty()
         for(user in party.users){
             $('#partyMemberlist').append("<li>" + party.users[user] + "</li>")   
@@ -20,3 +19,25 @@ function startClick() {
 }
 
 $("#start_btn").click(startClick)
+
+function settingsClick() {
+    $("#genres_container").toggleClass("hidden")
+}
+
+$("#settings_img").click(settingsClick)
+
+const genres = ["comedy", "horror", "action", "romance"]
+
+function doneClick() {
+    $("#genres_container").addClass("hidden")
+    
+    let genres_checked = []
+
+    for (i in genres) {
+        if ($("#"+genres[i]).is(":checked")) {
+            genres_checked.push(genres[i])
+        }
+    }
+}
+
+$("#settings_done").click(doneClick)
