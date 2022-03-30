@@ -74,6 +74,13 @@ get "/me" do
   return user.username
 end
 
+#TODO finish this
+def generateMovies(genres)
+  foundMovies = []
+
+
+end
+
 get "/party/create" do
   code = generate_rand_string(5)
   users = [getUser()]
@@ -157,7 +164,6 @@ get "/party/:code/activate" do
   success_response()
 end
 
-#TODO get this to work
 get "/party/:code/genres/add/:genre" do
   code = params[:code]
   party = $partys[code]

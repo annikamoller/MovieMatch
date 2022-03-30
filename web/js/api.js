@@ -163,3 +163,14 @@ function startParty(){
     localStorage.removeItem("index")
     localStorage.setItem("matches", [])
 }
+
+/**
+ * Sends genres to backend one by one
+ *
+ * @param {Array.<string>} genres - Movie genres
+ */
+function saveGenres(genres) {
+    for(let i = 0; i < genres.length; i++) {
+        getRequest(`/party/${localStorage.getItem("code")}/genres/add/${genres[i]}`)
+    }
+}

@@ -29,15 +29,20 @@ $("#settings_img").click(settingsClick)
 const genres = ["comedy", "horror", "action", "romance"]
 
 function doneClick() {
+    // hides settings container
     $("#genres_container").addClass("hidden")
     
-    let genres_checked = []
+    let genres_picked = []
 
-    for (i in genres) {
+    // finds picked genres
+    for(let i = 0; i < genres.length; i++) {
         if ($("#"+genres[i]).is(":checked")) {
-            genres_checked.push(genres[i])
+            genres_picked.push(genres[i])
         }
     }
+
+    console.log(genres_picked)
+    saveGenres(genres_picked)
 }
 
 $("#settings_done").click(doneClick)
