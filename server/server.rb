@@ -84,7 +84,7 @@ end
 get "/party/create" do
   code = generate_rand_string(5)
   users = [getUser()]
-  movies = [1, 2, 3]
+  movies = [5, 103, 688]
   liked = Hash.new()
   matches = []
   genres = []
@@ -153,7 +153,7 @@ get "/party/:code/like/:movieid" do
   end
 
   p party.liked[movieid]
-  
+
   success_response()
 end
 
