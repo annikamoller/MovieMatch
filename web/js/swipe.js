@@ -1,5 +1,8 @@
 let movieId=0
 nextMovie().then(movie => {
+    getParty().then(party => {
+        console.log(party)
+    })
     movieId = movie.id
     console.log(movie)
     $("#title").text(movie.title)

@@ -26,7 +26,7 @@ function settingsClick() {
 
 $("#settings_img").click(settingsClick)
 
-const genres = ["comedy", "horror", "action", "romance"]
+const genres = ["Comedy", "Horror", "Action", "Romance"]
 
 function doneClick() {
     // hides settings container

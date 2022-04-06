@@ -17,6 +17,7 @@
   align-items: center;
   flex-direction: column;
   background-color: rgb(24, 24, 24);
+  padding-top: 1rem;
 }
 
 .create_party_container {
@@ -77,6 +78,22 @@ body {
   font-size: 2rem;
   position: relative;
   top: 80%;
+}
+
+#description {
+  text-align: center;
+  font-size: 0.9rem;
+  color: white;
+}
+
+#title {
+  text-align: center;
+  color: white;
+}
+
+#rating {
+  color: white;
+  font-size: 1rem;
 }
 
 .active {

@@ -74,11 +74,33 @@ get "/me" do
   return user.username
 end
 
-#TODO finish this
+def array_overlap(a, b)
+  i = 0
+  while i < a.length 
+    j = 0
+    while j < b.length
+      if a[i] == b[j]
+        return true
+      end
+      j += 1
+    end
+    i += 1
+  end
+  return false
+end
+
 def generateMovies(genres)
   foundMovies = []
-
-
+  movies = $movies.values
+  i = 0
+  while i < movies.length && foundMovies.length < 100
+    if array_overlap(genres, movies[i].genres)
+      puts "Movie found and added"
+      foundMovies.append(movies[i].id)
+    end
+    i += 1
+  end
+  return foundMovies.shuffle
 end
 
 get "/party/create" do
@@ -87,7 +109,7 @@ get "/party/create" do
   movies = [5, 103, 688]
   liked = Hash.new()
   matches = []
-  genres = []
+  genres = ["Comedy", "Horror", "Romance", "Action"]
 
   new_party = Party.new(code, users, movies, liked, false, matches, genres)
   $partys[code] = new_party
@@ -161,6 +183,7 @@ get "/party/:code/activate" do
   code = params[:code]
   party = $partys[code]
   party.active = true
+  party.movies = generateMovies(party.genres)
   success_response()
 end
 
