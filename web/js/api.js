@@ -151,6 +151,7 @@ function likeMovie(id){
     return getRequest(`/party/${localStorage.getItem("code")}/like/${id}`)
 }
 
+// Tells backend to set party as active to tell other users to start swiping
 function activateParty(){
     return getRequest(`/party/${localStorage.getItem("code")}/activate`)
 }

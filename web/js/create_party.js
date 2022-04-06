@@ -11,14 +11,16 @@ function updatePartylist(){
 
 setInterval(updatePartylist, 1000)
 
+//Runs when startbutton is pressed
 function startClick() {
     console.log("start")
     activateParty()
     startParty()
-    location.href = "./swipe.html"
+    location.href = "./swipe.html" //Reedirects to swipe-page
 }
 
 $("#start_btn").click(startClick)
+
 
 function settingsClick() {
     $("#genres_container").toggleClass("hidden")
