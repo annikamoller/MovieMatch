@@ -33,6 +33,6 @@ for movie in movies:
     if response['poster_path'] is not None:
         poster =  IMAGE_URL + response['poster_path']
     
-    file.write("{} => Movie.new({},'{}','{}', '{}','{}', [{}]) \n".format(movie[3], movie[3], movie[0], poster, response['overview'].replace("'", ""), response['vote_average'], ",".join(['"' + m + '"' for m in movie[2]])))
+    file.write("{} => Movie.new({},'{}','{}', '{}','{}', [{}]) \n".format(movie[3], movie[3], movie[1], poster, response['overview'].replace("'", ""), response['vote_average'], ",".join(['"' + m + '"' for m in movie[2]])))
 
 file.write("} \n")
