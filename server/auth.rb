@@ -55,3 +55,8 @@ def authorize!
 
   return maybeUser
 end
+
+def getUser()
+  user = authorize!()
+  return user.username
+end
